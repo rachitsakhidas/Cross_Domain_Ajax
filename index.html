@@ -1,0 +1,54 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Payment details send using javascript</title>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				/*$.ajax({
+					type: "GET",
+					url: "http://paynetzuat.atomtech.in/paynetz/epi/fts?login=160&pass=Test%40123&ttype=NBFundTransfer&prodid=Club&amt=2500&txncurr=INR&txnscamt=0&clientcode=007&txnid=123&custacc=1234567890&date=06%2F04%2F2015&callback=processData",
+					dataType: "jsonp xml",
+					success: function(xmlResponse) { // process data }
+				});*/
+			});
+			
+			// programmatically load a script tag on the page using the given url
+			function loadRemoteData(url) {
+				var script = document.createElement("script");
+				script.setAttribute("type","text/javascript");
+				script.setAttribute("src", url);
+				document.getElementsByTagName("head")[0].appendChild(script);
+			}
+			
+			// make a request for the data using the script tag remoting approach.
+			loadRemoteData("http://paynetzuat.atomtech.in/paynetz/epi/fts?login=160&pass=Test%40123&ttype=NBFundTransfer&prodid=Club&amt=2500&txncurr=INR&txnscamt=0&clientcode=007&txnid=123&custacc=1234567890&date=06%2F04%2F2015&callback=processData");
+			
+			function processData(jsonResult){
+				alert(jsonResult);
+			}
+			function submitForm(){
+				/*document.form1.submit();
+				document.getElementById('iframe1').onload = function() {
+					alert('loaded successfully...');
+				}*/
+			}
+		</script>
+	</head>
+	<body onload="submitForm()">
+		<form id="form1" name="form1" action="http://paynetzuat.atomtech.in/paynetz/epi/fts"  method="get" target="iframe1">
+				<input type="hidden" name="login" value="160" />
+				<input type="hidden" name="pass" value="Test@123" />
+				<input type="hidden" name="ttype" value="NBFundTransfer" />
+				<input type="hidden" name="prodid" value="Club" />
+				<input type="hidden" name="amt" value="2500" />
+				<input type="hidden" name="txncurr" value="INR" />
+				<input type="hidden" name="txnscamt" value="0" />
+				<input type="hidden" name="clientcode" value="007" />
+				<input type="hidden" name="txnid" value="123" />
+				<input type="hidden" name="custacc" value="1234567890" />
+				<input type="hidden" name="date" value="06/04/2015" />
+		</form>
+		<iframe id="iframe1" name="iframe1"></iframe>
+	</body>
+</html>
